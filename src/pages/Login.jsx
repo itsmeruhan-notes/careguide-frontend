@@ -51,7 +51,7 @@ export default function Login() {
 
   return (
     <div className="bg-surface font-body-md text-on-surface min-h-screen flex items-center justify-center p-gutter">
-      <main className="w-full max-w-md mx-auto">
+      <main className="w-full max-w-4xl mx-auto">
         <div className="flex flex-col w-full">
           <div className="w-full max-w-4xl mx-auto my-auto bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row">
             <div className="w-full md:w-5/12 bg-surface-container-low p-space-xl flex flex-col justify-between relative overflow-hidden">
