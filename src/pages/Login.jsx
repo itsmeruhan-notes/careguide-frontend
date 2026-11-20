@@ -4,7 +4,7 @@ import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
 import Brand from '../Brand.jsx';
 
-const DEMO = { admin: ['ruhan', 'Admin1234'], user: ['demo', 'User1234'] };
+const DEMO = { admin: ['admin@ruhan.lol', 'Admin1234'], user: ['demo@ruhan.lol', 'User1234'] };
 
 export default function Login() {
   const { user, signIn } = useAuth();
@@ -27,7 +27,8 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     setError('');
-    if (!nickname.trim()) return setError('Nickname is required');
+    if (!nickname.trim()) return setError('Email is required');
+    if (!nickname.trim().toLowerCase().endsWith('@ruhan.lol')) return setError('Use your full email, e.g. karim@ruhan.lol');
     if (!password) return setError('Password is required');
     setBusy(true);
     try {
@@ -100,10 +101,10 @@ export default function Login() {
               )}
               <form className="flex flex-col gap-space-md" onSubmit={submit} noValidate>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-label-md text-label-md text-on-surface" htmlFor="email">Nickname</label>
+                  <label className="font-label-md text-label-md text-on-surface" htmlFor="email">Email address</label>
                   <div className="relative flex items-center">
                     <span className="material-symbols-outlined absolute left-3 text-outline text-[18px]">mail</span>
-                    <input value={nickname} onChange={(e) => setNickname(e.target.value)} autoComplete="username" className="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md outline-none focus:ring-2 focus:ring-primary shadow-sm" id="email" name="email" placeholder="you@ruhan.lol" type="text" />
+                    <input value={nickname} onChange={(e) => setNickname(e.target.value)} autoComplete="username" className="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md outline-none focus:ring-2 focus:ring-primary shadow-sm" id="email" name="email" placeholder="nickname@ruhan.lol" type="email" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -135,11 +136,11 @@ export default function Login() {
                 <span className="absolute px-space-sm bg-surface-container-lowest font-label-sm text-label-sm uppercase tracking-wide text-outline">Demo accounts</span>
               </div>
               <div className="grid grid-cols-2 gap-space-sm">
-                <button onClick={() => fill('admin')} title="ruhan / Admin1234" className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
+                <button onClick={() => fill('admin')} title="admin@ruhan.lol / Admin1234" className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
                   <span className="material-symbols-outlined text-[16px] text-secondary">admin_panel_settings</span>
                   <span className="truncate">Use Admin demo</span>
                 </button>
-                <button onClick={() => fill('user')} title="demo / User1234" className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
+                <button onClick={() => fill('user')} title="demo@ruhan.lol / User1234" className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
                   <span className="material-symbols-outlined text-[16px] text-primary">person</span>
                   <span className="truncate">Use User demo</span>
                 </button>
