@@ -71,7 +71,7 @@ function UserModal({ user, me, onClose, onSaved }) {
               </span>
             </div>
             <div className="relative">
-              <input className="w-full h-10 px-3 pl-9 rounded-lg bg-surface-container-high/60 font-body-md text-body-md text-on-surface-variant cursor-not-allowed select-all" disabled id="userEmailInput" readOnly type="text" value={isNew ? (nick ? `${nick}@ruhan.lol` : '') : user.email} placeholder="nickname@ruhan.lol" />
+              <input className="w-full h-10 px-3 pl-9 rounded-lg bg-surface-container-high/60 font-body-md text-body-md text-on-surface-variant cursor-not-allowed select-all" disabled id="userEmailInput" readOnly type="text" value={isNew ? (nick ? `${nick}@ruhan.lol` : '') : user.email} />
               <span className="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-outline">lock</span>
             </div>
             <span className="font-label-sm text-label-sm text-on-surface-variant">Email is generated from the nickname and cannot be changed.</span>

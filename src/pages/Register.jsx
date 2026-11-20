@@ -112,7 +112,7 @@ export default function Register() {
               <div className="flex flex-col gap-space-xs">
                 <label className="font-label-md text-label-md text-on-surface" htmlFor="email">Email</label>
                 <div className="relative flex items-center">
-                  <input readOnly value={nick ? `${nick}@ruhan.lol` : ''} className={`${inputCls()} text-on-surface-variant`} id="email" placeholder="nickname@ruhan.lol" type="text" />
+                  <input readOnly value={nick ? `${nick}@ruhan.lol` : ''} className={`${inputCls()} text-on-surface-variant`} id="email" type="text" />
                 </div>
               </div>
               <div className="flex flex-col gap-space-xs">

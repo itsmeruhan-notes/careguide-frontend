@@ -121,7 +121,7 @@ export default function UserProfile() {
                     <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight font-semibold">{u.name}</h1>
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm font-medium ${u.role === 'admin' ? 'bg-secondary-fixed text-on-secondary-fixed' : 'bg-surface-container text-on-surface-variant'}`}>{u.role === 'admin' ? 'Admin' : 'User'}</span>
                   </div>
-                  <p className="font-code-sm text-code-sm text-outline">@{u.name} · {u.name}@ruhan.lol</p>
+                  <p className="font-code-sm text-code-sm text-outline">@{u.name}</p>
                 </div>
               </div>
               <div className="flex items-center gap-space-xs shrink-0 self-start">

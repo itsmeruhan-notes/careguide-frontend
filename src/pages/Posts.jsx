@@ -37,7 +37,7 @@ export function PostCard({ post, onDelete, onTag, showAuthor = true }) {
                 <span className={`px-2 py-0.5 rounded-full font-label-sm text-label-sm ${post.author.role === 'admin' ? 'bg-secondary-fixed text-on-secondary-fixed' : 'bg-surface-container text-on-surface-variant'}`}>{post.author.role === 'admin' ? 'Admin' : 'User'}</span>
                 <span className="text-on-surface-variant font-body-sm text-body-sm">· {timeAgo(post.createdAt)}</span>
               </div>
-              <span className="text-on-surface-variant font-body-sm text-body-sm text-[12px] -mt-0.5 truncate">{post.author.name}@ruhan.lol</span>
+              <span className="text-on-surface-variant font-body-sm text-body-sm text-[12px] -mt-0.5 truncate">@{post.author.name}</span>
             </div>
           </div>
         ) : (
