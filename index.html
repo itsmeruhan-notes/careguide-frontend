@@ -13,7 +13,7 @@
     <script>
       try {
         const t = localStorage.getItem('rn-theme');
-        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+        if (t === 'dark') document.documentElement.classList.add('dark');
       } catch (e) { void e; }
     </script>
   </head>
