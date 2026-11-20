@@ -13,11 +13,13 @@ export default function Login() {
   const [hint, setHint] = useState('');
   const [busy, setBusy] = useState(false);
   const [health, setHealth] = useState(null);
+  const [registration, setRegistration] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     api('/health').then(setHealth).catch(() => setHealth({ status: 'down' }));
+    api('/auth/config').then((c) => setRegistration(Boolean(c.registration))).catch(() => setRegistration(false));
   }, []);
 
   if (user) return <Navigate to={location.state?.from || '/home'} replace />;
@@ -119,11 +121,13 @@ export default function Login() {
                   <span className={`material-symbols-outlined text-[16px] ${busy ? 'animate-spin' : ''}`}>{busy ? 'progress_activity' : 'arrow_forward'}</span>
                 </button>
               </form>
+              {registration && (
               <div className="mt-space-md text-center">
                 <Link className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" to="/register">
                   Don't have an account? <span className="font-semibold text-primary">Register</span>
                 </Link>
               </div>
+              )}
             </div>
           </div>
         </div>

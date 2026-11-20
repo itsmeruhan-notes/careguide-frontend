@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
@@ -54,7 +54,12 @@ export default function Register() {
   const [busy, setBusy] = useState(false);
   const [banner, setBanner] = useState('');
   const navigate = useNavigate();
+  const [open, setOpen] = useState(null);
+  useEffect(() => {
+    api('/auth/config').then((c) => setOpen(Boolean(c.registration))).catch(() => setOpen(false));
+  }, []);
   if (user) return <Navigate to="/home" replace />;
+  if (open === false) return <Navigate to="/login" replace />;
 
   const nick = form.name.trim().toLowerCase();
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
