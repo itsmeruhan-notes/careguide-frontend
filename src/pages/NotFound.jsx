@@ -54,11 +54,6 @@ function Body({ message }) {
             </button>
           </div>
           <div className="flex items-center gap-space-lg mt-space-xl pt-space-lg flex-wrap justify-center">
-            <a className="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href={`${import.meta.env.BASE_URL}api/docs/`} target="_blank" rel="noreferrer">
-              <span className="material-symbols-outlined text-[15px]">help_center</span>
-              <span>API Documentation</span>
-            </a>
-            <span className="text-outline-variant font-label-sm">•</span>
             <a className="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="https://ruhan.bd" target="_blank" rel="noreferrer">
               <span className="material-symbols-outlined text-[15px]">support_agent</span>
               <span>Contact Ruhan</span>

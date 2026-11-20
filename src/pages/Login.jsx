@@ -4,8 +4,6 @@ import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
 import Brand from '../Brand.jsx';
 
-const DEMO = { admin: ['admin@ruhan.lol', 'Admin1234'], user: ['demo@ruhan.lol', 'User1234'] };
-
 export default function Login() {
   const { user, signIn } = useAuth();
   const [nickname, setNickname] = useState('');
@@ -42,11 +40,6 @@ export default function Login() {
     }
   };
 
-  const fill = (k) => {
-    setNickname(DEMO[k][0]);
-    setPassword(DEMO[k][1]);
-    setError('');
-  };
 
   const up = health?.status === 'ok';
 
@@ -130,20 +123,6 @@ export default function Login() {
                 <Link className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" to="/register">
                   Don't have an account? <span className="font-semibold text-primary">Register</span>
                 </Link>
-              </div>
-              <div className="relative my-space-lg flex items-center justify-center">
-                <div className="w-full h-px bg-surface-container-high"></div>
-                <span className="absolute px-space-sm bg-surface-container-lowest font-label-sm text-label-sm uppercase tracking-wide text-outline">Demo accounts</span>
-              </div>
-              <div className="grid grid-cols-2 gap-space-sm">
-                <button onClick={() => fill('admin')} className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
-                  <span className="material-symbols-outlined text-[16px] text-secondary">admin_panel_settings</span>
-                  <span className="truncate">Use Admin demo</span>
-                </button>
-                <button onClick={() => fill('user')} className="h-9 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
-                  <span className="material-symbols-outlined text-[16px] text-primary">person</span>
-                  <span className="truncate">Use User demo</span>
-                </button>
               </div>
             </div>
           </div>
