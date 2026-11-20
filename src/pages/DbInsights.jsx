@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { api } from '../api.js';
 import { timeAgo, useAsync } from '../util.js';
 import { ErrorBanner, Skeleton } from '../ui.jsx';
+import SampleQueries from './SampleQueries.jsx';
 
 const kb = (b) => (b >= 1024 * 1024 ? `${(b / 1024 / 1024).toFixed(1)} MB` : `${(b / 1024).toFixed(1)} KB`);
 
@@ -143,6 +144,32 @@ export default function DbInsights() {
 
         {(idx.error || ex.error) && <ErrorBanner error={idx.error || ex.error} onRetry={rerun} />}
 
+        {idx.data?.collectionStats && (
+          <div className="flex flex-col gap-space-md">
+            <div>
+              <h2 className="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Collections</h2>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">Live document counts and storage for the three collections.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+              {idx.data.collectionStats.map((c) => (
+                <div key={c.name} className="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col gap-space-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-primary font-code-sm text-code-sm font-semibold">{c.name}</span>
+                    <span className="font-code-sm text-code-sm text-on-surface-variant">{c.indexes} indexes</span>
+                  </div>
+                  <span className="font-headline-xl text-headline-xl font-bold text-on-surface leading-none">{c.documents.toLocaleString()}</span>
+                  <span className="font-label-md text-label-md text-on-surface-variant">documents</span>
+                  <div className="grid grid-cols-3 gap-space-xs pt-space-xs font-code-sm text-code-sm">
+                    <div className="flex flex-col"><span className="text-outline">data</span><span className="text-on-surface">{kb(c.dataSize)}</span></div>
+                    <div className="flex flex-col"><span className="text-outline">avg doc</span><span className="text-on-surface">{c.avgDocSize} B</span></div>
+                    <div className="flex flex-col"><span className="text-outline">indexes</span><span className="text-on-surface">{kb(c.indexSize)}</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col gap-space-md">
           <div className="flex items-end justify-between gap-space-md">
             <div>
@@ -210,6 +237,8 @@ export default function DbInsights() {
             {plans.map((q, i) => <Plan key={q.name} q={q} i={i} />)}
           </div>
         </div>
+
+        <SampleQueries />
 
         {plans.length > 0 && (
           <div className="w-full p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
